@@ -1,145 +1,147 @@
-// when a gif is clicked, the gif unpauses and plays, and pauses when it's clicked again
-// when a new button is clicked, the page loads with 10 new gifs for that topic / keyword; the old gifs are replaced.
+//===============
+// VARIABLES
+//===============
 
-// giphy emotes array
+// Reactions array
 var reactions = ["wow", "omg", "shocked", "laughing", "funny", "surprised", "amazing", "excited", "worried", "pouting", "sad", "happy", "mad", "scared", "confident", "shy", "tired", "sleepy", "cheerful", "exhausted"];
 
-// should be able to pause and unpause gifs via the 15 exercise
-// should be able to get button html layout from bootstrap
+//===============
+// FUNCTIONS
+//===============
 
+// Place the initial buttons on the page
 function renderButtons() {
-  // $(".btnRow").empty();
+  // Empty the button container
   $(".btnContainer").empty();
 
   for (var i = 0; i < reactions.length; i++) {
-    
+    // Create a div to hold the buttons
     var btnDiv = $("<div>");
-    btnDiv.addClass("col-md-3 col-sm-6 col-xs-12 btnDiv")
+    btnDiv.addClass("col-md-3 col-sm-6 col-xs-12 btnDiv");
 
+    // Each reaction in the array will get assigned to a button
     var giphyBtn = $("<button>");
-    // giphyBtn.attr("type", "button");
     giphyBtn.addClass("reaction btn btn-primary btn-lg");
-
     giphyBtn.attr("data-name", reactions[i]);
-
     giphyBtn.text(reactions[i]);
+
+    // Append the button to the button div
     btnDiv.append(giphyBtn);
+
+    // Append the button div to the HTML button container
     $(".btnContainer").append(btnDiv);
   }
 }
 
-// $(document).ready(function () {
-  // $(".reaction").on("click", function () {
-    function callGiphy() {
-    // Grabbing and storing the data-animal property value from the button
-    // $(".gifRow").empty();
-    $(".gifContainer").empty();
-    var reaction = $(this).attr("data-name");
-    var apiKey = "8HowGhMe8GG4dFwu51eMc5xgg2WCQzu4";
-    var rating = "g";
-    var limit = 10;
+// Make a call to the Giphy API
+function callGiphy() {
+  // Empty the gif container
+  $(".gifContainer").empty();
+  var reaction = $(this).attr("data-name");
 
-    // Constructing a queryURL using the animal name
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      reaction + "&api_key=" + apiKey + "&rating=" + rating + "&limit=" + limit;
+  // Establish the API parameters
+  var apiKey = "8HowGhMe8GG4dFwu51eMc5xgg2WCQzu4";
+  var rating = "g";
+  var limit = 10;
 
-    // Logging the URL so we have access to it for troubleshooting
-    console.log("---------------\nURL: " + queryURL + "\n---------------");
+  // Construct a queryURL based on the parameters
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    reaction + "&api_key=" + apiKey + "&rating=" + rating + "&limit=" + limit;
 
-    // Performing an AJAX request with the queryURL
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-      // After data comes back from the request
-      .then(function (response) {
-        // console.log(queryURL);
+  // Log the URL so we have access to it for troubleshooting
+  console.log("---------------\nURL: " + queryURL + "\n---------------");
 
-        console.log(response);
-        // storing the data from the AJAX request in the results variable
-        var results = response.data;
+  // Perform an AJAX request with the queryURL
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+    // After data comes back from the request
+    .then(function (response) {
+      console.log(response);
 
-        // Looping through each result item
-        for (var i = 0; i < results.length; i++) {
+      // Store the data from the AJAX request in a variable
+      var results = response.data;
 
-          // Creating and storing a div tag
-          // var reactionDiv = $("<div>");
-          // var reactionDiv = $(".gifRow");
-          // var reactionDiv = $(".gifContainer");
-          var gifDiv = $("<div>");
-          gifDiv.addClass("col-md-3 col-sm-6 col-xs-12 gifDiv");
+      // Loop through each result item
+      for (var i = 0; i < results.length; i++) {
 
-          // Creating a paragraph tag with the result item's rating
-          // var p = $("<p>").text("Rating: " + results[i].rating);
+        // Create a div for for the gifs
+        var gifDiv = $("<div>");
+        gifDiv.addClass("col-md-3 col-sm-6 col-xs-12 gifDiv");
 
-          // Creating and storing an image tag
-          var reactionImage = $("<img>");
-          // Setting the src attribute of the image to a property pulled off the result item
+        // Create a an image tag
+        var reactionImage = $("<img>");
 
-          // Set the gif image source to a still image
-          reactionImage.attr("src", results[i].images.fixed_height_still.url);
+        // Set the gif image source to a still image
+        reactionImage.attr("src", results[i].images.fixed_height_still.url);
 
-          // Set the gif data-still attribute to the still image link
-          reactionImage.attr("data-still", results[i].images.fixed_height_still.url);
+        // Set the gif data-still attribute to the still image link
+        reactionImage.attr("data-still", results[i].images.fixed_height_still.url);
 
-          // Set the gif data-animate attribute to the animated image link
-          reactionImage.attr("data-animate", results[i].images.fixed_height.url);
+        // Set the gif data-animate attribute to the animated image link
+        reactionImage.attr("data-animate", results[i].images.fixed_height.url);
 
-          reactionImage.attr("data-state", "still");
+        // Set the gif's data-state value to 'still'
+        reactionImage.attr("data-state", "still");
 
-          // reactionImage.addClass("gif col-md-3 col-sm-6 col-xs-12");
-          reactionImage.addClass("gif img-responsive img-thumbnail");
-          
-          var gifText = $("<div>");
-          gifText.addClass("gifText");
-          gifText.text("Rating: " + results[i].rating);
+        reactionImage.addClass("gif img-responsive img-thumbnail");
 
-          // Appending the paragraph and image tag to the animalDiv
-          // reactionDiv.append(p);
-          // reactionDiv.append(reactionImage);
-          // gifDiv.append(p);
-          gifDiv.append(reactionImage);
-          gifDiv.append(gifText);
-          
-          // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-          // $(".gifRow").prepend(reactionDiv);
-          // $(".gifContainer").prepend(reactionDiv);
-          $(".gifContainer").prepend(gifDiv);
-        }
-      });
-    }
+        // Create a text div for the gif's rating value
+        var gifText = $("<div>");
+        gifText.addClass("gifText");
+        gifText.text("Rating: " + results[i].rating);
 
+        // Append the image to the gif div
+        gifDiv.append(reactionImage);
+
+        // Append the text to the gif div
+        gifDiv.append(gifText);
+
+        // Place the gif div into the gif container
+        $(".gifContainer").prepend(gifDiv);
+      }
+    });
+}
+
+// An event listener for a click on any of the reaction buttons to retrieve gifs based on that reaction from Giphy
 $(document).on("click", ".reaction", callGiphy);
+
+// An event listener for a click on any of the gifs to pause / unpause them
 $(document).on("click", ".gif", gifAnimate);
 
+// Set the actions for pausing / unpausing the gifs
 function gifAnimate() {
-    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-    var state = $(this).attr("data-state");
-    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-    // Then, set the image's data-state to animate
-    // Else set src to the data-still value
-    if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
-    } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-    }
+  var state = $(this).attr("data-state");
+  // If the gif's image state is 'still', update its src attribute to what its data-animate value is.
+  // Then, set the image's data-state to animate
+  // Else set src to the data-still value
+  if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
   }
+}
 
-  $("#add-emotion").on("click", function(event) {
-    // Preventing the buttons default behavior when clicked (which is submitting a form)
-    event.preventDefault();
-    // This line grabs the input from the textbox
-    var newReaction = $("#giphyInput").val().trim();
+// Add a reaction button to the listing based on the user's input
+$("#add-reaction").on("click", function (event) {
+  // Prevent the button's default behavior when clicked (which is submitting a form)
+  event.preventDefault();
+  
+  // Get the input from the textbox
+  var newReaction = $("#giphyInput").val().trim();
 
-    // Adding the movie from the textbox to our array
-    reactions.push(newReaction);
+  // Add the reaction from the textbox to the array
+  reactions.push(newReaction);
 
-    // Calling renderButtons which handles the processing of our movie array
-    renderButtons();
+  // Call renderButtons to add the new button
+  renderButtons();
+});
 
-  });
-
+//===============
+// MAIN PROCESS
+//===============
 
 renderButtons();
