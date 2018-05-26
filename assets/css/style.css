@@ -59,6 +59,11 @@ body {
   /* background-color: rgba(52, 152, 219,0.6);  */
 }
 
+#giphyInput {
+  background-color: rgba(253, 254, 254,0.8);
+  border: solid 2px #fdfefe; 
+}
+
 button {
   margin: 5px 5px 5px 5px;
   font-family: "IBM Plex Mono", monospace;
