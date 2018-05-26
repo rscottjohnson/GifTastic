@@ -8,17 +8,23 @@ var reactions = ["wow", "omg", "shocked", "laughing", "funny", "surprised", "ama
 // should be able to get button html layout from bootstrap
 
 function renderButtons() {
-  $(".btnRow").empty();
+  // $(".btnRow").empty();
+  $(".btnContainer").empty();
 
   for (var i = 0; i < reactions.length; i++) {
+    
+    var btnDiv = $("<div>");
+    btnDiv.addClass("col-md-3 col-sm-6 col-xs-12 btnDiv")
+
     var giphyBtn = $("<button>");
     // giphyBtn.attr("type", "button");
-    giphyBtn.addClass("reaction");
+    giphyBtn.addClass("reaction btn btn-primary btn-lg");
 
     giphyBtn.attr("data-name", reactions[i]);
 
     giphyBtn.text(reactions[i]);
-    $(".btnRow").append(giphyBtn);
+    btnDiv.append(giphyBtn);
+    $(".btnContainer").append(btnDiv);
   }
 }
 
@@ -26,7 +32,8 @@ function renderButtons() {
   // $(".reaction").on("click", function () {
     function callGiphy() {
     // Grabbing and storing the data-animal property value from the button
-    $(".gifRow").empty();
+    // $(".gifRow").empty();
+    $(".gifContainer").empty();
     var reaction = $(this).attr("data-name");
     var apiKey = "8HowGhMe8GG4dFwu51eMc5xgg2WCQzu4";
     var rating = "g";
@@ -57,17 +64,17 @@ function renderButtons() {
 
           // Creating and storing a div tag
           // var reactionDiv = $("<div>");
-          var reactionDiv = $(".gifRow");
+          // var reactionDiv = $(".gifRow");
+          // var reactionDiv = $(".gifContainer");
+          var gifDiv = $("<div>");
+          gifDiv.addClass("col-md-3 col-sm-6 col-xs-12 gifDiv");
 
           // Creating a paragraph tag with the result item's rating
-          var p = $("<p>").text("Rating: " + results[i].rating);
+          // var p = $("<p>").text("Rating: " + results[i].rating);
 
           // Creating and storing an image tag
           var reactionImage = $("<img>");
           // Setting the src attribute of the image to a property pulled off the result item
-
-          // Original setup
-          // reactionImage.attr("src", results[i].images.fixed_height.url);
 
           // Set the gif image source to a still image
           reactionImage.attr("src", results[i].images.fixed_height_still.url);
@@ -80,27 +87,27 @@ function renderButtons() {
 
           reactionImage.attr("data-state", "still");
 
-          reactionImage.addClass("gif");
-          // reactionImage.attr("id", "gif");
-          // reactionImage.attr("data-still", "");
-          // reactionImage.attr("data-animate", "");
+          // reactionImage.addClass("gif col-md-3 col-sm-6 col-xs-12");
+          reactionImage.addClass("gif img-responsive img-thumbnail");
+          
+          var gifText = $("<div>");
+          gifText.addClass("gifText");
+          gifText.text("Rating: " + results[i].rating);
 
           // Appending the paragraph and image tag to the animalDiv
-          reactionDiv.append(p);
-          // $(".gifRow").append(p);
-          reactionDiv.append(reactionImage);
-          // $(".gifRow").append(reactionImage);
-
-
+          // reactionDiv.append(p);
+          // reactionDiv.append(reactionImage);
+          // gifDiv.append(p);
+          gifDiv.append(reactionImage);
+          gifDiv.append(gifText);
+          
           // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-          $(".gifRow").prepend(reactionDiv);
+          // $(".gifRow").prepend(reactionDiv);
+          // $(".gifContainer").prepend(reactionDiv);
+          $(".gifContainer").prepend(gifDiv);
         }
       });
     }
-//       });
-//   });
-//   // $(document).on("click", ".gif", gifAnimate);
-// });
 
 $(document).on("click", ".reaction", callGiphy);
 $(document).on("click", ".gif", gifAnimate);

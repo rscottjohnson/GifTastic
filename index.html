@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>GifTastic</title>
-  <link href="https://fonts.googleapis.com/css?family=Fredoka+One|IBM+Plex+Mono|Righteous|Roboto+Condensed" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto+Condensed|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -18,42 +19,38 @@
     <div class="jumbotron jumbotron-fluid jumbotron-custom">
       <div class="container">
         <h1 class="display-4">GifTastic</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <h2 class="lead">The amazing gif reactions generator!</h2>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-xs-12 info">
+        <h3>Click on a button below to generate gifs:</h3>
+      </div>
+    </div>
+    <hr>
 
     <!-- Button section -->
-    <div class="row">
-      <div class="col-md-12 col-sm-6 col-xs-4 btnRow">
-
-      </div>
-
+    <div class="row btnContainer">
+      <!-- <div class="col-md-12 col-sm-6 col-xs-4 btnRow">
+      </div> -->
     </div>
+    <hr>
 
-    <!-- From bootstrap forms -->
     <!-- For input of additional button topics -->
     <form>
       <div class="form-group">
-        <label for="giphyInput">Add an emotion</label>
+        <label class="inputLabel" for="giphyInput">Add a reaction to the list!:</label>
         <input type="text" class="form-control" id="giphyInput">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
-      <!-- <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div> -->
-      <!-- <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-      <!-- </div> -->
       <button id="add-emotion" type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <hr>
 
     <!-- Output section -->
-    <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-12 gifRow">
-
-      </div>
+    <div class="row gifContainer">
+      <!-- <div class="col-md-3 col-sm-6 col-xs-12 gifRow">
+      </div> -->
 
     </div>
   </div>

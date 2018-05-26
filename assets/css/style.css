@@ -3,13 +3,20 @@ font-family: 'Fredoka One', cursive;
 font-family: 'Roboto Condensed', sans-serif;
 font-family: 'IBM Plex Mono', monospace; */
 
+/* font-family: 'Delius Unicase', cursive;
+font-family: 'Dekko', cursive;
+font-family: 'Patrick Hand SC', cursive;
+font-family: 'Bangers', cursive;
+font-family: 'Carter One', cursive;
+font-family: 'Fredericka the Great', cursive; */
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  background: #EAECEE;
+  background: #000000;
   margin-bottom: 65px;
 }
 
@@ -19,14 +26,63 @@ body {
   background-position: center top;
 }
 
-h1 {
-  font-family: 'Fredoka One', cursive;
+.display-4 {
+  font-family: "Fredoka One", cursive;
+  color: #fdfefe;
+  text-shadow: 2px 2px #000000;
+  /* background-color: rgba(52, 152, 219,0.6); */
+}
+
+.lead {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #000000;
+  font-size: 32px;
+  /* text-shadow: 2px 2px #000000; */
+  background-color: rgba(52, 152, 219,0.6);
+}
+
+.info {
+  padding: 0px 0px 0px 20px;
+  font-family: "Fredoka One", cursive;
+  color: #fdfefe;
+  font-size: 24px;
+  /* text-shadow: 2px 2px #000000; */
+  /* background-color: rgba(52, 152, 219,0.6);  */
+}
+
+.inputLabel {
+  padding: 0px 0px 0px 8px;
+  font-family: "Fredoka One", cursive;
+  color: #fdfefe;
+  font-size: 24px;
+  text-shadow: 2px 2px #000000;
+  /* background-color: rgba(52, 152, 219,0.6);  */
 }
 
 button {
   margin: 5px 5px 5px 5px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
+}
 
+.reaction {
+  background-color: #0068FB;
+}
+
+.gifDiv {
+  position: relative;
+  text-align: center;
+  margin: 10px 10px 20px 10px;
+}
+
+.gifText {
+  position: absolute;
+  top: 8px;
+  left: 65%;
+  color: #fdfefe;
+  text-shadow: 2px 2px #000000;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .footer {
@@ -35,10 +91,10 @@ button {
   height: 65px;
   line-height: 55px;
   width: 100%;
-  background-color: #0D47A1;
-  color: #E53935;
+  background-color: #0068FB;
+  color: #fdfefe;
   text-align: center;
   font-size: 12px;
-  border-top: 5px solid #E53935;
-  font-family: 'Righteous', cursive;
+  border-top: 5px solid #fdfefe;
+  font-family: "IBM Plex Mono", monospace;
 }
