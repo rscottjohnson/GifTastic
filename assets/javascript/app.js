@@ -63,10 +63,16 @@ function callGiphy() {
       // Store the data from the AJAX request in a variable
       var results = response.data;
 
+      // Create a div to act as the header for the gif output
+      var gifHeader = $("<div>");
+      gifHeader.addClass("gifHeader");
+      gifHeader.text(reaction + " gifs:");
+      $(".gifHeader").append(gifHeader);
+
       // Loop through each result item
       for (var i = 0; i < results.length; i++) {
 
-        // Create a div for for the gifs
+        // Create a div for the gifs
         var gifDiv = $("<div>");
         gifDiv.addClass("col-md-3 col-sm-6 col-xs-12 gifDiv");
 
