@@ -35,8 +35,10 @@ function renderButtons() {
 
 // Make a call to the Giphy API
 function callGiphy() {
-  // Empty the gif container
+  // Empty the gif container and the gifHeader
   $(".gifContainer").empty();
+  $(".gifHeader").empty();
+
   var reaction = $(this).attr("data-name");
 
   // Establish the API parameters
