@@ -144,8 +144,12 @@ $("#add-reaction").on("click", function (event) {
   // Add the reaction from the textbox to the array
   reactions.push(newReaction);
 
+  
+
   // Call renderButtons to add the new button
   renderButtons();
+
+  $("#giphyInput").val("");
 });
 
 //===============
